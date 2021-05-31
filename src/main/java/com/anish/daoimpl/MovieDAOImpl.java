@@ -2,6 +2,7 @@ package com.anish.daoimpl;
 
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
@@ -19,27 +20,35 @@ public class MovieDAOImpl implements MovieDAO
 	SessionFactory sessionFactory;
 	
 	@Override
-	public boolean addProduct(Movie m)
+	public boolean addMovie(Movie m)
 	{
 		sessionFactory.getCurrentSession().save(m);
 		return true;
 	}
 
 	@Override
-	public boolean delProduct(Movie m) {
+	public boolean delMovie(Movie m) {
 		sessionFactory.getCurrentSession().delete(m);
 		return true;
 	}
 
 	@Override
-	public boolean updProduct(Movie m) {
+	public boolean updMovie(Movie m) {
 		sessionFactory.getCurrentSession().saveOrUpdate(m);
 		return true;
 	}
 
 	@Override
-	public List<Movie> dispProducts() {
+	public List<Movie> dispMovie() {
 		return sessionFactory.getCurrentSession().createCriteria(Movie.class).list();
+	}
+
+	@Override
+	public Movie dispMovie(int movieid)
+	{
+		Query query=sessionFactory.getCurrentSession().createQuery("from com.anish.model.Movie where movieID = :id");
+		query.setParameter("id", movieid);
+		return (Movie)query.getResultList().get(0);
 	}
 	
 }

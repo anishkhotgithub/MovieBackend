@@ -21,20 +21,19 @@ public class AppTest2
 	@Autowired MovieDAO mdao;
 	
 	@Test
-	@Ignore
 	public void testAddProd()
 	{
-		assertEquals(true, mdao.addProduct(new Movie("Avenger", "Action", "Marvel")));
+		assertEquals(true, mdao.addMovie(new Movie("Avenger", "Action", "Marvel","https://i.pinimg.com/originals/0f/03/e6/0f03e6733b0cf567cc92e8e20290462f.jpg")));
 	}
 	
 	@Test
 	@Ignore
 	public void testUpdProd()
 	{
-		Movie m = new Movie("Conjuring", "Horror", "Truth");
+		Movie m = new Movie("Conjuring", "Horror", "Truth","https://i.pinimg.com/originals/0f/03/e6/0f03e6733b0cf567cc92e8e20290462f.jpg");
 		m.setMovieID(1);;
 		
-		assertEquals(true, mdao.updProduct(m));
+		assertEquals(true, mdao.updMovie(m));
 	}
 	
 	@Test
@@ -44,12 +43,13 @@ public class AppTest2
 		Movie m = new Movie();
 		m.setMovieID(1);
 		
-		assertEquals(true, mdao.delProduct(m));
+		assertEquals(true, mdao.delMovie(m));
 	}
 	
 	@Test
+	@Ignore
 	public void testDispProd()
 	{
-		assertNotEquals(null, mdao.dispProducts());
+		assertNotEquals(null, mdao.dispMovie());
 	}
 }

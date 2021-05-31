@@ -24,7 +24,7 @@ public class AppTest
     @Test
     public void addUserTest()
     {
-        assertTrue(userDAO.addUser(new User("Anish","Pass@123")));
+        assertTrue(userDAO.addUser(new User("Anish","Pass@123","anishkhot@gmail.com")));
     }
     
     @Test
