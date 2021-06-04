@@ -18,19 +18,21 @@ import com.anish.config.AppConfig;
 @SpringJUnitConfig(classes=AppConfig.class)
 public class AppTest2 
 {
+	
 	@Autowired MovieDAO mdao;
 	
 	@Test
 	public void testAddProd()
 	{
-		assertEquals(true, mdao.addMovie(new Movie("Avenger", "Action", "Marvel","https://i.pinimg.com/originals/0f/03/e6/0f03e6733b0cf567cc92e8e20290462f.jpg")));
+		//kept the String null you can add trailer link here to store by adding console 
+		assertEquals(true, mdao.addMovie(new Movie("Avenger", "Action", "Marvel","https://i.pinimg.com/originals/0f/03/e6/0f03e6733b0cf567cc92e8e20290462f.jpg" ,"")));
 	}
 	
 	@Test
 	@Ignore
 	public void testUpdProd()
 	{
-		Movie m = new Movie("Conjuring", "Horror", "Truth","https://i.pinimg.com/originals/0f/03/e6/0f03e6733b0cf567cc92e8e20290462f.jpg");
+		Movie m = new Movie("Conjuring", "Horror", "Truth","https://i.pinimg.com/originals/0f/03/e6/0f03e6733b0cf567cc92e8e20290462f.jpg","");
 		m.setMovieID(1);;
 		
 		assertEquals(true, mdao.updMovie(m));

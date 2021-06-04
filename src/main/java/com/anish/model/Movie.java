@@ -1,13 +1,19 @@
 package com.anish.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name="Movie")
@@ -32,13 +38,20 @@ public class Movie
 	
 	@Column(length = 2000)
 	private String movieimageurl;
+	
+	@Column(length = 3000)
+	private String trailer;
+	
+	@OneToMany(cascade =CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "movie")
+	private List<Seasons> seasons;
 
-	public Movie(String moviename, String movieCategory, String movieDesc, String movieimageurl) {
+	public Movie(String moviename, String movieCategory, String movieDesc, String movieimageurl, String trailer) {
 		super();
 		this.moviename = moviename;
 		this.movieCategory = movieCategory;
 		this.movieDesc = movieDesc;
 		this.movieimageurl = movieimageurl;
+		this.trailer = trailer;
 	}
 	public Movie() {
 		super();
@@ -73,4 +86,17 @@ public class Movie
 	public void setMovieimageurl(String movieimageurl) {
 		this.movieimageurl = movieimageurl;
 	}
+	public String getTrailer() {
+		return trailer;
+	}
+	public void setTrailer(String trailer) {
+		this.trailer = trailer;
+	}
+	public List<Seasons> getSeasons() {
+		return seasons;
+	}
+	public void setSeasons(List<Seasons> seasons) {
+		this.seasons = seasons;
+	}
+	
 }

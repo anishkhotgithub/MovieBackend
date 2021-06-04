@@ -46,7 +46,7 @@ public class MovieDAOImpl implements MovieDAO
 	@Override
 	public Movie dispMovie(int movieid)
 	{
-		Query query=sessionFactory.getCurrentSession().createQuery("from com.anish.model.Movie where movieID = :id");
+		Query query=sessionFactory.getCurrentSession().createQuery("from Movie where movieID = :id");
 		query.setParameter("id", movieid);
 		return (Movie)query.getResultList().get(0);
 	}
