@@ -22,6 +22,7 @@ public class Seasons
 	@Column(columnDefinition = "TEXT")
 	private String seasonDesc;
 	private String seasonimgurl;
+	private String videoimgurl;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Movie movie;
@@ -74,6 +75,15 @@ public class Seasons
 	public Movie getMovie() {
 		return movie;
 	}
+
+	public String getVideoimgurl() {
+		return videoimgurl;
+	}
+
+	public void setVideoimgurl(String videoimgurl) {
+		this.videoimgurl = videoimgurl;
+	}
+	
 	
 	
 }

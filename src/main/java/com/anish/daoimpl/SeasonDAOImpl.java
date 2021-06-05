@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.anish.dao.SeasonDAO;
+import com.anish.model.Movie;
 import com.anish.model.Seasons;
 
 @Transactional
@@ -28,15 +29,16 @@ public class SeasonDAOImpl implements SeasonDAO
 	}
 
 	@Override
-	public boolean delSeason(Seasons s) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delSeason(Seasons s) 
+	{
+		sessionFactory.getCurrentSession().delete(s);
+		return true;
 	}
 
 	@Override
 	public boolean updSeason(Seasons s) {
-		// TODO Auto-generated method stub
-		return false;
+		sessionFactory.getCurrentSession().saveOrUpdate(s);
+		return true;
 	}
 
 	@Override
@@ -57,8 +59,9 @@ public class SeasonDAOImpl implements SeasonDAO
 
 	@Override
 	public Seasons dispSeason(int seasonid) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query=sessionFactory.getCurrentSession().createQuery("from Seasons where sid = :id");
+		query.setParameter("id", seasonid);
+		return (Seasons)query.getResultList().get(0);
 	}
 
 	@Override
